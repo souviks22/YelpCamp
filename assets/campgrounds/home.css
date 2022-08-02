@@ -1,0 +1,73 @@
+body {
+    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)),
+        center/contain url('https://images.unsplash.com/photo-1531315630201-bb15abeb1653?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80');
+}
+
+.card {
+    background-color: #ececec;
+    margin-top: 1em;
+    margin-bottom: 5em;
+}
+
+.card:hover {
+    color: #2f2f2f;
+    transform: scale(1.1);
+    transition: .1s ease-out;
+}
+
+.card-title {
+    font-size: 2rem;
+}
+
+.image-content {
+    box-sizing: border-box;
+    border-left: 5px solid whitesmoke;
+}
+
+img {
+    width: 60%;
+    height: auto;
+    border-bottom: 2px solid white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #2f2f2f;
+}
+
+a {
+    text-decoration: none;
+    color: #2f2f2f;
+}
+
+form.container {
+    max-width: 40%;
+    background-color: rgba(255, 255, 255, .9);
+    border-radius: 50px;
+    margin-bottom: 5em;
+}
+
+form.container input,
+form.container input:focus {
+    background-color: transparent;
+    border: 0;
+    border-radius: 50px;
+    box-shadow: none;
+    outline: none;
+}
+
+form.container .submit,
+form.container button {
+    padding-inline: 0;
+    border: 0;
+}
+
+@media (max-width:632px) {
+    form.container {
+        max-width: 90%;
+        margin-bottom: 2em;
+    }
+
+    h1 {
+        text-align: center;
+        padding: .5em;
+        margin: .5em auto;
+    }
+}

@@ -1,0 +1,83 @@
+body {
+    font-family: 'Comfortaa', cursive;
+    background: rgba(0, 0, 0, .1)
+}
+
+h1 {
+    color: white;
+}
+
+i {
+    margin-left: .5em;
+}
+
+nav.container {
+    max-width: 75%;
+    margin-top: 2em;
+}
+
+.collapse {
+    justify-content: flex-end;
+}
+
+.navbar-brand:hover {
+    color: whitesmoke;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: whitesmoke;
+    border-bottom: 2px solid whitesmoke;
+    margin-bottom: -2px;
+    transform: scale(1.01);
+}
+
+.authentication {
+    display: flex;
+    margin-left: 2em;
+}
+
+.authentication .nav-link {
+    padding-inline: 0;
+}
+
+.authentication .nav-link:hover {
+    border: 0;
+}
+
+.scroll-nav {
+    transition: .3s ease-in;
+    background-color: #2f2f2fe7;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width:632px) {
+
+    nav.container {
+        max-width: 90%;
+    }
+
+    .top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .authentication {
+        margin-left: 0;
+        flex-direction: column;
+    }
+
+    .authentication .disabled {
+        display: none;
+    }
+
+    .collapse .nav-link {
+        color: whitesmoke;
+        border-bottom: 1px solid whitesmoke;
+        margin-bottom: -1px;
+    }
+}

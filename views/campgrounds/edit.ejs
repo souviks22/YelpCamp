@@ -1,0 +1,72 @@
+<%- layout('layout/boilerplate') %>
+<%- block('head').append('<link rel="stylesheet" href="/campgrounds/edit.css">') %>
+
+<h1 class="display-2 text-center m-5">Edit <%= camp.title %></h1>
+<form class="form-control container to-validate" action="/campgrounds/<%= camp._id %>?_method=patch" method="post"
+    novalidate enctype="multipart/form-data">
+    <div>
+        <label class="form-label" for="title">Camp Title</label>
+        <input class="form-control" type="text" name="campground[title]" id="title" value="<%= camp.title %>"
+            autocomplete="off" required>
+        <aside class="invalid-feedback">*title required</aside>
+        <aside class="valid-feedback">great!</aside>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label" for="cost">Cost</label>
+            <section class="input-group">
+                <span class="input-group-text">$</span>
+                <input class="form-control" type="number" min="0" step="0.01" name="campground[cost]" id="cost"
+                    value="<%= camp.cost %>" autocomplete="off" required>
+                <aside class="invalid-feedback">*cost required</aside>
+                <aside class="valid-feedback">great!</aside>
+            </section>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label" for="city">City</label>
+            <input class="form-control" type="text" name="campground[city]" id="city" value="<%= camp.city %>"
+                autocomplete="off" required>
+            <aside class="invalid-feedback">*city required</aside>
+            <aside class="valid-feedback">great!</aside>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label" for="state">State/Country</label>
+            <input class="form-control" type="text" name="campground[state]" id="state" value="<%= camp.state %>"
+                autocomplete="off" required>
+            <aside class="invalid-feedback">*state/country required</aside>
+            <aside class="valid-feedback">great!</aside>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <label class="col-sm-2 col-form-label text-center" for="images">Add Image(s)</label>
+        <section class="col-sm-10">
+            <input class="form-control" type="file" name="images" id="images" multiple accept=".jpeg, .jpg, .png">
+        </section>
+    </div>
+    <hr>
+    <div>
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" name="campground[description]" id="description" cols="30" rows="10"
+            required><%= camp.description %></textarea>
+        <aside class="invalid-feedback">*description required</aside>
+        <aside class="valid-feedback">great!</aside>
+    </div>
+    <div>
+        <label class="form-label" for="delete-img">Delete Image(s)</label>
+        <fieldset id="delete-img">
+            <% for(let i=0; i<camp.images.length; i++) { %>
+            <input class="form-check d-none" type="checkbox" name="deleteImages[]" id="img<%= i %>"
+                value="<%= camp.images[i].filename %>">
+            <label class="form-label" for="img<%= i %>">
+                <img src="<%= camp.images[i].tiny %>">
+            </label>
+            <% } %>
+        </fieldset>
+    </div>
+    <div class="controls">
+        <button class="btn btn-info" type="submit">Update<i class="fa-solid fa-file-pen"></i></button>
+        <a href="/campgrounds/<%= camp._id %>">
+            <button class="btn btn-danger" type="button">Cancel<i class="fa-solid fa-ban"></i></button>
+        </a>
+    </div>
+</form>

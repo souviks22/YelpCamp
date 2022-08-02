@@ -1,0 +1,33 @@
+body {
+    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)),
+        center/cover url('https://images.unsplash.com/photo-1531265726475-52ad60219627?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1791&q=80');
+}
+
+form.container {
+    max-width: 40%;
+    margin: 5em auto;
+    color: whitesmoke;
+    padding: 1.5em;
+    padding-bottom: 0;
+    background-color: rgba(234, 61, 61, 0.656);
+}
+
+form.container label {
+    margin-top: 1em;
+    text-align: center;
+}
+
+form.container button {
+    margin: 1em;
+}
+
+@media (max-width:632px) {
+    form.container {
+        max-width: 90%;
+        padding: .5em;
+    }
+
+    form.container label {
+        text-align: left;
+    }
+}

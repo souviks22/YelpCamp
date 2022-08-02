@@ -1,0 +1,39 @@
+body {
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)),
+        center/cover url('https://images.unsplash.com/photo-1495195129352-aeb325a55b65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80');
+}
+
+#map {
+    height: 500px;
+    width: 80%;
+    margin: 5em auto
+}
+
+.mapboxgl-ctrl-logo {
+    display: none !important;
+}
+
+.popup {
+    padding: .5em;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.popup:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.popup h4 {
+    font-size: 2em;
+    font-family: 'Ubuntu';
+}
+
+.popup p {
+    font-size: 1em;
+}
+
+.mapboxgl-popup-content {
+    background: rgba(255, 255, 255, .8);
+}

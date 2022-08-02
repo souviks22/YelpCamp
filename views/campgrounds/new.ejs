@@ -1,0 +1,60 @@
+<%- layout('layout/boilerplate') %>
+<%- block('head').append('<link rel="stylesheet" href="/campgrounds/new.css">') %>
+
+<h1 class="display-2 text-center m-5">New Campground</h1>
+<form class="form-control container to-validate" action="/campgrounds" method="post" novalidate
+    enctype="multipart/form-data">
+    <div>
+        <label class="form-label" for="title">Camp Title</label>
+        <input class="form-control" type="text" name="campground[title]" id="title" autocomplete="off" required>
+        <aside class="invalid-feedback">*title required</aside>
+        <aside class="valid-feedback">great!</aside>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label" for="cost">Cost</label>
+            <section class="input-group">
+                <span class="input-group-text">$</span>
+                <input class="form-control" type="number" min="0" step="0.01" name="campground[cost]" id="cost"
+                    autocomplete="off" required>
+                <aside class="invalid-feedback">*cost required</aside>
+                <aside class="valid-feedback">great!</aside>
+            </section>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label" for="city">City</label>
+            <input class="form-control" type="text" name="campground[city]" id="city" autocomplete="off" required>
+            <aside class="invalid-feedback">*city required</aside>
+            <aside class="valid-feedback">great!</aside>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label" for="state">State/Country</label>
+            <input class="form-control" type="text" name="campground[state]" id="state" autocomplete="off" required>
+            <aside class="invalid-feedback">*state/country required</aside>
+            <aside class="valid-feedback">great!</aside>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <label class="col-sm-2 col-form-label text-center" for="images">Add Image(s)</label>
+        <section class="col-sm-10">
+            <input class="form-control" type="file" name="images" id="images" multiple accept=".jpeg, .jpg, .png"
+                required>
+            <aside class="invalid-feedback">*image required</aside>
+            <aside class="valid-feedback">great!</aside>
+        </section>
+    </div>
+    <hr>
+    <div>
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" name="campground[description]" id="description" cols="30" rows="10"
+            required></textarea>
+        <aside class="invalid-feedback">*description required</aside>
+        <aside class="valid-feedback">great!</aside>
+    </div>
+    <div class="controls">
+        <button class="btn btn-success" type="submit">Create<i class="fa-solid fa-calendar-plus"></i></button>
+        <a href="/campgrounds">
+            <button class="btn btn-danger" type="button">Cancel<i class="fa-solid fa-ban"></i></button>
+        </a>
+    </div>
+</form>

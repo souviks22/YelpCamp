@@ -1,0 +1,8 @@
+<%- layout('layout/boilerplate') %>
+<%- block('head').append('<link rel="stylesheet" href="/error/error.css"></link>') %>
+
+<div class="alert alert-danger container">
+    <h1><%= message %></h1>
+    <h2><%= status %></h2>
+    <p><%= stack %></p>
+</div>

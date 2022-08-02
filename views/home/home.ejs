@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YelpCamp | <%= docTitle %></title>
+    <link rel="shortcut icon" href="/YelpCamp.ico" type="image/x-icon">
+    <%- include('../partials/links') %>
+    <link rel="stylesheet" href="/home/home.css">
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+    <%- include('../partials/flash') %>
+    <div class="arrange container">
+        <h1>Welcome to YelpCamp</h1>
+        <a href="/campgrounds/new">
+            <button class="btn btn-lg btn-dark">Create New Camp</button>
+        </a>
+    </div>
+</body>
+
+</html>

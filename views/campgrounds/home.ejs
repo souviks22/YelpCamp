@@ -1,0 +1,45 @@
+<%- layout('layout/boilerplate') %>
+<%- block('head').append('<link rel="stylesheet" href="/campgrounds/home.css">') %>
+
+<h1 class="display-2 text-center p-md-5 mb-md-3">Campgrounds</h1>
+<form class="form-control container" action="/campgrounds">
+    <section class="row">
+        <div class="input col-11">
+            <input class="form-control" type="text" name="search" id="search" value="<%= search %>"
+                placeholder="search campground" autocomplete="off">
+        </div>
+        <div class="submit col-1">
+            <button class="btn" type="submit">
+                <i class="fa-solid fa-magnifying-glass m-0"></i>
+            </button>
+        </div>
+    </section>
+</form>
+<% if(currentUser) { %>
+<div class="container mb-5 text-center text-md-end">
+    <a href="/campgrounds/new" class="mx-4">
+        <button class="btn btn-lg btn-outline-light">New Camp</button>
+    </a>
+</div>
+<% } %>
+<div class="container">
+    <% if(!camps.length) { %>
+    <p class="text-center text-light fs-5">no matches found<br><i class="fa-solid fa-face-frown"></i></p>
+    <% } %>
+
+    <% for(const camp of camps.reverse()) { %>
+    <section class="row py-sm-4">
+        <div class="col-md-4 d-flex justify-content-center image-content">
+            <img class="img-fluid" src="<%= camp.images[0].url %>" alt="camp">
+        </div>
+        <div class="col-md-8">
+            <a href="/campgrounds/<%= camp._id %>">
+                <section class="card card-body">
+                    <div class="card-title"><%= camp.title %></div>
+                    <div class="card-text text-muted"><%= camp.place %></div>
+                </section>
+            </a>
+        </div>
+    </section>
+    <% } %>
+</div>

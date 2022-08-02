@@ -1,0 +1,20 @@
+<%- layout('layout/boilerplate') %>
+<%- block('head').append('<link rel="stylesheet" href="/authentication/signIn.css">') %>
+
+<form class="form-control container to-validate" action="/signin" method="post" novalidate>
+    <section class="row m-2">
+        <label class="col-sm-3 col-form-label" for="username">Username</label>
+        <div class="col-sm-9">
+            <input class="form-control" type="text" name="username" id="username" autocomplete="off" autofocus required>
+        </div>
+    </section>
+    <section class="row m-2">
+        <label class="col-sm-3 col-form-label" for="password">Password</label>
+        <div class="col-sm-9">
+            <input class="form-control" type="password" name="password" id="password" autocomplete="off" required>
+        </div>
+    </section>
+    <div class="text-center">
+        <button class="btn btn-outline-light" type="submit">Sign In</button>
+    </div>
+</form>

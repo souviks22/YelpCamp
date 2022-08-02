@@ -1,0 +1,119 @@
+<%- layout('layout/boilerplate') %>
+<%- block('head').append('<link rel="stylesheet" href="/campgrounds/show.css">') %>
+<% const isCampAuthor = currentUser && camp.author.equals(currentUser) %>
+<% const campAuthor = (isCampAuthor && 'You') || '@'+camp.author.username %>
+
+<div class="layout container">
+    <div class="card">
+        <div class="card-title display-5"><%= camp.title %></div>
+        <figure class="carousel slide" data-bs-ride="carousel" id="image-slides">
+            <div class="carousel-inner">
+                <% for(let i=0; i<camp.images.length; i++) { %>
+                <div class="carousel-item <%= !i && 'active' %>">
+                    <img src="<%= camp.images[i].slide %>" class="d-block w-100">
+                </div>
+                <% } %>
+            </div>
+            <% if(camp.images.length>1) { %>
+            <div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#image-slides" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#image-slides" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+            <% } %>
+        </figure>
+        <section class="card-body">
+            <div class="text-muted text-center"><i class="fa-solid fa-location-dot mx-2"></i><%= camp.place %></div>
+            <div class="display-5 camp-cost mb-3">$ <%= camp.cost %></div>
+            <div class="card-text bg-dark"><%= camp.description %></div>
+            <div class="text-muted text-center text-md-end m-3">created by <%= campAuthor %></div>
+
+        </section>
+        <% if(isCampAuthor) { %>
+        <div class="controls">
+            <a href="/campgrounds/<%=camp._id %>/edit">
+                <button class="btn btn-info">Edit<i class="fa-solid fa-pen-to-square"></i></button>
+            </a>
+            <form action="/campgrounds/<%=camp._id %>?_method=delete" method="post">
+                <button class="btn btn-danger">Delete<i class="fa-solid fa-trash"></i></button>
+            </form>
+        </div>
+        <% } %>
+    </div>
+
+    <section class="pane">
+        <div id="map"></div>
+        <div class="review">
+            <form class="form-control text-light to-validate" action="/campgrounds/<%= camp._id %>/reviews"
+                method="post" novalidate>
+                <section>
+                    <label class="form-label w-100 text-center" for="rating">Leave a review</label>
+                    <fieldset class="stars-input" id="rating">
+                        <input type="radio" type="number" name="review[rating]" id="star5" value="5" required>
+                        <label for="star5"></label>
+                        <input type="radio" type="number" name="review[rating]" id="star4" value="4">
+                        <label for="star4"></label>
+                        <input type="radio" type="number" name="review[rating]" id="star3" value="3">
+                        <label for="star3"></label>
+                        <input type="radio" type="number" name="review[rating]" id="star2" value="2">
+                        <label for="star2"></label>
+                        <input type="radio" type="number" name="review[rating]" id="star1" value="1">
+                        <label for="star1"></label>
+                    </fieldset>
+                    <div class="invalid-feedback text-center text-warning">*Rating required</div>
+                </section>
+                <section>
+                    <label class="form-label" for="body">Share your thoughts</label>
+                    <textarea class="form-control" name="review[body]" id="body" cols="30" rows="4" required></textarea>
+                    <div class="invalid-feedback text-warning">*Text required</div>
+                </section>
+                <% if(currentUser) { %>
+                <aside class="text-center">
+                    <button class="btn btn-sm btn-outline-light m-2 px-4" type="submit">Post</button>
+                </aside>
+                <% } else { %>
+                <p class="text-light text-center">Please sign-in to make a review</p>
+                <% } %>
+            </form>
+        </div>
+
+    </section>
+</div>
+
+<div class="reviews container">
+    <h4>Reviews</h4>
+    <% if(camp.reviews.length) { %>
+    <div class="review-list">
+        <% for(let review of camp.reviews) { %>
+
+        <% const isReviewAuthor = currentUser && review.author.equals(currentUser) %>
+        <% const reviewAuthor = (isReviewAuthor && 'You') || review.author.username %>
+
+        <div class="review-item">
+            <section class="review-top">
+                <p><%= reviewAuthor %></p>
+                <p>
+                    <% for(let i = 0; i<5; i++ ) { %>
+                    <% if(i<review.rating) { %><i class="fa-solid fa-star"></i>
+                    <% } else { %><i class="fa-regular fa-star"></i><% }} %>
+                </p>
+            </section>
+            <section class="text-dark"><%= review.body %></section>
+            <% if(isReviewAuthor) { %>
+            <form class="text-end" action="/campgrounds/<%= camp._id %>/reviews/<%= review._id %>?_method=delete"
+                method="post">
+                <button class="btn btn-sm btn-danger" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+            </form>
+            <% } %>
+        </div>
+        <% } %>
+        <% } else {%>
+        <p class="text-light text-center m-5">No reviews</p>
+        <% } %>
+    </div>
+</div>
+
+<script src="/maps/location.js"></script>

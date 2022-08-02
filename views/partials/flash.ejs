@@ -1,0 +1,36 @@
+<% if(success.length) { %>
+<div class="alert alert-success alert-dismissible fade show flash container">
+    <p><%= success %></p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<% } %>
+
+<% if(error.length) { %>
+<div class="alert alert-danger alert-dismissible fade show flash container">
+    <p><%= error %></p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<% } %>
+
+<style>
+    .flash {
+        max-width: 50%;
+        margin: .5em auto;
+        margin-inline: 25%;
+        position: absolute;
+        top: 15%;
+        opacity: .8;
+    }
+
+    .flash p {
+        text-align: center;
+        margin: 0;
+    }
+
+    @media (max-width:632px) {
+        .flash {
+            max-width: 80%;
+            transform: translateX(-20%);
+        }
+    }
+</style>

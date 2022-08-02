@@ -1,0 +1,22 @@
+<%- layout('layout/boilerplate') %>
+<%- block('head').append('<link rel="stylesheet" href="/authentication/signUp.css">') %>
+
+<form class="form-control container to-validate" action="/signup" method="post" novalidate>
+    <div>
+        <label class="form-label" for="email">Email</label>
+        <input class="form-control" type="email" name="email" id="email" autocomplete="off" autofocus required>
+    </div>
+    <div class="row">
+        <section class="col-sm-6">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" name="username" id="username" autocomplete="off" required>
+        </section>
+        <section class="col-sm-6">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="password" autocomplete="off" required>
+        </section>
+    </div>
+    <div class="text-end">
+        <button class="btn btn-outline-light" type="submit">Sign Up</button>
+    </div>
+</form>
