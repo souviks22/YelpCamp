@@ -28,8 +28,8 @@
         <section class="card-body">
             <div class="text-muted text-center"><i class="fa-solid fa-location-dot mx-2"></i><%= camp.place %></div>
             <div class="display-5 camp-cost mb-3">$ <%= camp.cost %></div>
-            <div class="card-text bg-dark"><%= camp.description %></div>
-            <div class="text-muted text-center text-md-end m-3">created by <%= campAuthor %></div>
+            <div class="card-text"><%= camp.description %></div>
+            <div class="text-muted text-center m-3">created by <%= campAuthor %></div>
 
         </section>
         <% if(isCampAuthor) { %>
@@ -50,7 +50,7 @@
             <form class="form-control text-light to-validate" action="/campgrounds/<%= camp._id %>/reviews"
                 method="post" novalidate>
                 <section>
-                    <label class="form-label w-100 text-center" for="rating">Leave a review</label>
+                    <label class="form-label w-100 text-center" for="rating">Leave a Review</label>
                     <fieldset class="stars-input" id="rating">
                         <input type="radio" type="number" name="review[rating]" id="star5" value="5" required>
                         <label for="star5"></label>
@@ -101,7 +101,7 @@
                     <% } else { %><i class="fa-regular fa-star"></i><% }} %>
                 </p>
             </section>
-            <section class="text-dark"><%= review.body %></section>
+            <section class="text-light"><%= review.body %></section>
             <% if(isReviewAuthor) { %>
             <form class="text-end" action="/campgrounds/<%= camp._id %>/reviews/<%= review._id %>?_method=delete"
                 method="post">
