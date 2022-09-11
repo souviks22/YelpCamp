@@ -9,7 +9,7 @@ const avgLngLat = camps => {
     return [avgLng, avgLat]
 }
 
-axios.get('https://aqueous-brushlands-12355.herokuapp.com/mapbox')
+axios.get('/mapbox')
     .then(json => {
         mapboxgl.accessToken = json.data.mapToken
         const map = new mapboxgl.Map({

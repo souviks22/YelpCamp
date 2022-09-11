@@ -1,4 +1,4 @@
-axios.get('https://aqueous-brushlands-12355.herokuapp.com/mapbox')
+axios.get('/mapbox')
     .then(json => {
         const { mapToken, position } = json.data
         mapboxgl.accessToken = mapToken
