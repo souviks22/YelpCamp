@@ -29,5 +29,5 @@ Enter the URL `http://localhost:2000/` on your favourite browser
 
 #### Your YelpCamp is ready for use
 
-![YelpCamp Home](https://res.cloudinary.com/dmoyqi6br/image/upload/v1659427284/YelpCamp/yelpcamp_z8kgeq.jpg)
+![YelpCamp Home](https://res.cloudinary.com/dmoyqi6br/image/upload/v1659427284/YelpCamp/YelpCamp_bqogwi.png)
 You can see mine [here](https://aqueous-brushlands-12355.herokuapp.com/)
