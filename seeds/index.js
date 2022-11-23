@@ -1,50 +1,49 @@
 const mongoose = require('mongoose');
-const dbUrl = process.env.ATLAS_DB_URL || 'mongodb://localhost:27017/yelpcamp'
+const dbUrl = 'mongodb+srv://Souviks22:wTSmAJAFttHYmwDv@cluster0.enmse.mongodb.net/?retryWrites=true&w=majority' // || 'mongodb://localhost:27017/yelpcamp'
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
     .then(() => { console.log('Connected to yelpcamp database') })
-    .catch(() => { console.log('Error!') })
+    .catch((err) => { console.error('Error!', err) })
 
 const Campground = require('../models/Campground')
 // const Review = require('../models/Review')
 // const User = require('../models/User')
-const cities = require('./cities')
-const names = require('./names')
+const places = require('./places')
+const titles = require('./titles')
+const users = require('./users')
+const costs = require('./costs')
+const images = require('./images')
+const descriptions = require('./descripitons')
 
 const choice = arr => arr[Math.floor(Math.random() * arr.length)]
 const seed = async () => {
+
     // await Campground.deleteMany();
     // await Review.deleteMany();
     // await User.deleteMany();
-    // const user = new User({ email: 'souviksarkar2k3@gmail.com', username: 'Souviks22' });
-    // await User.register(user, '6nJxRVCBP!!aYia');
 
-    for (let i = 0; i < 1000; i++) {
-        const city = choice(cities);
+    // for (const user of users) {
+    //     const newUser = new User({ email: user.email, username: user.username });
+    //     await User.register(newUser, user.password);
+    // }
+
+    for (let i = 0; i < 500; i++) {
+        const place = choice(places);
         const camp = new Campground({
-            author: '62e637c822224a534bb7f93a', // user._id,
-            cost: 16.99,
-            description: "Camp is an aesthetic style and sensibility that regards something as appealing because of its bad taste and ironic value. Camp aesthetics disrupt many of modernism's notions of what art is and what can be classified as high art by inverting aesthetic attributes such as beauty, value, and taste through an invitation of a different kind of apprehension and consumption.(dummy)",
-            title: `${choice(names.descriptors)} ${choice(names.places)}`,
-            city: city.city,
-            state: city.state,
-            place: `${city.city}, ${city.state}, USA`,
+            author: choice(users).id,
+            cost: choice(costs),
+            description: choice(descriptions),
+            title: `${choice(titles.descriptors)} ${choice(titles.places)}`,
+            city: place.city,
+            state: place.state,
+            place: `${place.city}, ${place.state}, USA`,
             geometry: {
                 type: 'Point',
-                coordinates: [city.longitude, city.latitude]
+                coordinates: [place.longitude, place.latitude]
             },
-            images: [
-                {
-                    url: 'https://res.cloudinary.com/dmoyqi6br/image/upload/h_300,w_500,c_thumb/v1658788406/YelpCamp/jimmy-conover-J_XuXX9m0KM-unsplash_qzdfp9.jpg',
-                    filename: 'YelpCamp/jimmy-conover-J_XuXX9m0KM-unsplash_qzdfp9'
-                },
-                {
-                    url: 'https://res.cloudinary.com/dmoyqi6br/image/upload/h_300,w_500,c_thumb/v1658787959/YelpCamp/WhatsApp_Image_2022-04-29_at_12.28.45_AM_gli15t.jpg',
-                    filename: 'YelpCamp/WhatsApp_Image_2022-04-29_at_12.28.45_AM_gli15t'
-                }
-            ]
+            images: [choice(images), choice(images)]
         })
         await camp.save()
     }
